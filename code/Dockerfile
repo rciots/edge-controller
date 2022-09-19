@@ -5,7 +5,7 @@ RUN chown -R 1001:0 /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-RUN dnf install systemd-udev
+RUN dnf install systemd-udev -y
 RUN dnf upgrade -y
 RUN dnf clean all
 USER 1001
