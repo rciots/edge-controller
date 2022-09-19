@@ -1,5 +1,7 @@
 const {Board, Stepper, Relay, Switch} = require("johnny-five");
-const board = new Board();
+const board = new Board({
+    repl: false
+});
 const readline = require('readline');
 // import socket.io-client
 var wsport = process.env.WS_PORT || 8080;
