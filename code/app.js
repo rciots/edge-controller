@@ -21,10 +21,10 @@ socket.on("disconnect", () => {
     console.log("io disconnected");
 });
 board.on("ready", () => {
-    const endx0 = new Switch(38);
-    const endx1 = new Switch(39);
-    const endy0 = new Switch(36);
-    const endy1 = new Switch(37);
+    const endx0 = new Switch(51);
+    const endx1 = new Switch(49);
+    const endy0 = new Switch(53);
+    const endy1 = new Switch(47);
     var endxDown = true;
     var endxUp = true;
     var endyDown = true;
@@ -37,7 +37,7 @@ board.on("ready", () => {
     endy0.on("open", () => endyUp = true);
     endy1.on("close", () => endyDown = false);
     endy1.on("open", () => endyDown = true);
-    var relay = new Relay(35);
+    var relay = new Relay(25);
     // x axis
     const xStepper = new Stepper({
         type: Stepper.TYPE.DRIVER,
