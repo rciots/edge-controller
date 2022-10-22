@@ -21,8 +21,8 @@ socket.on("disconnect", () => {
     console.log("io disconnected");
 });
 board.on("ready", () => {
-    const endx0 = new Switch(51);
-    const endx1 = new Switch(49);
+    const endx0 = new Switch(49);
+    const endx1 = new Switch(51);
     const endy0 = new Switch(53);
     const endy1 = new Switch(47);
     var endxDown = true;
