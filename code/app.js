@@ -103,9 +103,9 @@ board.on("ready", () => {
                 active = false;
                 launchClaw(relay);
             } else if ((key.name == "left") && (endxUp)){
-                moveClaw(xStepper, 20, 0);
-            } else if ((key.name == "right") && (endxDown)){
                 moveClaw(xStepper, 20, 1);
+            } else if ((key.name == "right") && (endxDown)){
+                moveClaw(xStepper, 20, 0);
             }
         })
     });
@@ -133,7 +133,7 @@ board.on("ready", () => {
                             if (endyDown) {
                                 moveClaw(yStepper, 20, 1);
                             }else if (endxUp) {
-                                moveClaw(xStepper, 20, 0);
+                                moveClaw(xStepper, 20, 1);
                             } else {
                                 setTimeout(() => {
                                     relay.toggle();
