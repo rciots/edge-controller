@@ -84,10 +84,10 @@ board.on("ready", () => {
                 launchClaw(relay);
             } else if ((control == "ArrowLeft") && (endxUp)) {
                 console.log("left");
-                moveClaw(xStepper, 20, 0);
+                moveClaw(xStepper, 20, 1);
             } else if ((control == "ArrowRight") && (endxDown)){
                 console.log("right");
-                moveClaw(xStepper, 20, 1);
+                moveClaw(xStepper, 20, 0);
             }
         });
 
