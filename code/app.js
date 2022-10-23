@@ -21,6 +21,13 @@ socket.on("disconnect", () => {
     console.log("io disconnected");
 });
 board.on("ready", () => {
+    socket.on("user_on", (status) => {
+        if (status){
+            relay_light.on();
+        } else {
+            relay_light.off();
+        }
+    });
     const endx0 = new Switch(49);
     const endx1 = new Switch(51);
     const endy0 = new Switch(53);
@@ -38,6 +45,7 @@ board.on("ready", () => {
     endy1.on("close", () => endyDown = false);
     endy1.on("open", () => endyDown = true);
     var relay = new Relay(25);
+    var relay_light = new Relay(23);
     // x axis
     const xStepper = new Stepper({
         type: Stepper.TYPE.DRIVER,
