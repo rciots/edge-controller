@@ -25,10 +25,10 @@ board.on("ready", () => {
     socket.on("user_on", (status) => {
         if (status){
             console.log("user_on status: " + status);
-            relaylight.open();
+            relaylight.close();
         } else {
             console.log("user_on status: " + status);
-            relaylight.close();
+            relaylight.open();
         }
     });
     const endx0 = new Switch(49);
