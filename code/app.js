@@ -21,12 +21,13 @@ socket.on("disconnect", () => {
     console.log("io disconnected");
 });
 board.on("ready", () => {
-    var relay_light = new Relay(23);
+    var relaylight = new Relay(23);
     socket.on("user_on", (status) => {
+        console.log("user_on status: " + status);
         if (status){
-            relay_light.open();
+            relaylight.open();
         } else {
-            relay_light.close();
+            relaylight.close();
         }
     });
     const endx0 = new Switch(49);
