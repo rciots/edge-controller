@@ -24,9 +24,9 @@ board.on("ready", () => {
     var relay_light = new Relay(23);
     socket.on("user_on", (status) => {
         if (status){
-            relay_light.on();
+            relay_light.open();
         } else {
-            relay_light.off();
+            relay_light.close();
         }
     });
     const endx0 = new Switch(49);
