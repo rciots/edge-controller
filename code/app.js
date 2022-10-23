@@ -23,10 +23,11 @@ socket.on("disconnect", () => {
 board.on("ready", () => {
     var relaylight = new Relay(23);
     socket.on("user_on", (status) => {
-        console.log("user_on status: " + status);
         if (status){
+            console.log("user_on status: " + status);
             relaylight.open();
         } else {
+            console.log("user_on status: " + status);
             relaylight.close();
         }
     });
