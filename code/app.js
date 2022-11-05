@@ -9,7 +9,7 @@ const readline = require('readline');
 var wsport = process.env.WS_PORT || 8080;
 var connectorsvc = process.env.CONNECTOR_SVC || "edge-ws-connector.edge-ws-connector.svc.cluster.local";
 const { io } = require('socket.io-client');
-var inAction = false;
+var inAction = [];
 
 const socket = io("http://" + connectorsvc + ":" + wsport, {
     reconnection: true,
@@ -156,8 +156,9 @@ board.on("ready", () => {
         });   
     }
     function moveClaw(stepper, steps, direction) {
-        if (!inAction) {
-            inAction = true;
+        if (!inAction[stepper.pins.step]) {
+            console.log(stepper.pins.step);
+            inAction[stepper.pins.step] = true;
             if (direction == 1) {
                 stepper.rpm(180).ccw();
             }else if (direction == 0) {
@@ -166,7 +167,7 @@ board.on("ready", () => {
             stepper.step({
                 steps: steps
             }, () => {
-                inAction = false;
+                inAction[stepper.pins.step] = false;
             });
         }
     }
