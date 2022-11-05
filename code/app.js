@@ -1,7 +1,9 @@
 const {Board, Stepper, Relay, Switch} = require("johnny-five");
+
 const board = new Board({
     repl: false
 });
+
 const readline = require('readline');
 // import socket.io-client
 var wsport = process.env.WS_PORT || 8080;
@@ -80,30 +82,24 @@ board.on("ready", () => {
     });
     zStepper.rpm(180).ccw();
     zStepper.step(720, () => {
-        console.log("Done moving CCW");
         socket.on("control", (control) => {
             if ((control == "ArrowUp") && (endyUp)) {
-                console.log("up");
                 moveClaw(yStepper, 20, 0);
             } else if ((control == "ArrowDown") && (endyDown)) {
-                console.log("down");
                 moveClaw(yStepper, 20, 1);
             } else if (control == "Space") {
                 console.log("space");
                 active = false;
                 launchClaw(relay);
             } else if ((control == "ArrowLeft") && (endxUp)) {
-                console.log("left");
                 moveClaw(xStepper, 20, 1);
             } else if ((control == "ArrowRight") && (endxDown)){
-                console.log("right");
                 moveClaw(xStepper, 20, 0);
             }
         });
 
         //DEBUG KEYBOARD
         process.stdin.on('keypress', (str, key) => {
-            console.log(key.name)
             if (key && key.ctrl && key.name == 'c') process.exit();
             if ((key.name == "up") && (endyUp)){
                 moveClaw(yStepper, 20, 0);
@@ -160,17 +156,13 @@ board.on("ready", () => {
     }
     function moveClaw(stepper, steps, direction) {
         if (direction == 1) {
-            console.log("CCW");
             stepper.rpm(180).ccw();
         }else if (direction == 0) {
-            console.log("CW");
             stepper.rpm(180).cw();
         }
-        console.log("dir:" + direction);
         stepper.step({
             steps: steps
         }, () => {
-            console.log("Done moving");
         });        
     }
 });
