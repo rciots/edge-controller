@@ -42,14 +42,14 @@ board.on("ready", () => {
     var endxUp = true;
     var endyDown = true;
     var endyUp = true;
-    endx0.on("close", () => endxUp = false);
-    endx0.on("open", () => endxUp = true);
+    endx0.on("close", () => endxUp = true);
+    endx0.on("open", () => endxUp = false);
     endx1.on("close", () => endxDown = false);
     endx1.on("open", () => endxDown = true);
     endy0.on("close", () => endyUp = false);
     endy0.on("open", () => endyUp = true);
-    endy1.on("close", () => endyDown = false);
-    endy1.on("open", () => endyDown = true);
+    endy1.on("close", () => endyDown = true);
+    endy1.on("open", () => endyDown = false);
     var relay = new Relay(25);
     // x axis
     const xStepper = new Stepper({
