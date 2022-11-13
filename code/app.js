@@ -156,19 +156,14 @@ board.on("ready", () => {
         });   
     }
     function moveClaw(stepper, steps, direction) {
-        if (!inAction[stepper.pins.step]) {
-            console.log(stepper.pins.step);
-            inAction[stepper.pins.step] = true;
-            if (direction == 1) {
-                stepper.rpm(180).ccw();
-            }else if (direction == 0) {
-                stepper.rpm(180).cw();
-            }
-            stepper.step({
-                steps: steps
-            }, () => {
-                inAction[stepper.pins.step] = false;
-            });
+        if (direction == 1) {
+            stepper.rpm(180).ccw();
+        }else if (direction == 0) {
+            stepper.rpm(180).cw();
         }
+        stepper.step({
+            steps: steps
+        }, () => {
+        });
     }
 });
