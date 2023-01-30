@@ -10,4 +10,5 @@ RUN dnf upgrade -y
 RUN dnf clean all
 USER 1001
 EXPOSE 8080
-CMD npm start
+CMD sh -c node app.js
+# CMD npm start
